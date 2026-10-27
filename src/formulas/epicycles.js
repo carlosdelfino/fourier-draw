@@ -21,7 +21,9 @@
  * @property {number} phase Fase inicial (arg C_n), em radianos.
  */
 
-const INTEGRATION_SAMPLES = 1024;
+// Amostras da quadratura da DFT. Deve exceder 2× a maior frequência usada
+// (Nyquist) — com até 2500 frequências, 8192 amostras evitam aliasing.
+const INTEGRATION_SAMPLES = 8192;
 
 /**
  * Calcula os coeficientes de Fourier complexos de um caminho fechado.
