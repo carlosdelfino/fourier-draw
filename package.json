@@ -1,0 +1,25 @@
+{
+  "name": "fourier-draw",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Fourier Draw — desenhos paramétricos com séries de Fourier (x_N(t), y_N(t))",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "better-react-mathjax": "^2.0.3",
+    "mathjs": "^13.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

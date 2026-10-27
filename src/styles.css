@@ -1,0 +1,183 @@
+/**
+ * Estilos do Fourier Draw — paleta alinhada a carlosdelfino.eti.br e
+ * crypto-chat.rapport.tec.br (brand #ed5919, yellow #ffc62f, green #526841,
+ * brown #533a28, paper #fffcf6).
+ *
+ * Author:  Carlos Delfino
+ * Email:   consultoria@carlosdelfino.eti.br
+ * WhatsApp: +55 (85) 98520-5490
+ */
+
+:root {
+  --brand: #ed5919;
+  --orange: #f77a20;
+  --yellow: #ffc62f;
+  --green: #526841;
+  --brown: #533a28;
+  --ink: #302b25;
+  --muted: #6c6359;
+  --paper: #fffcf6;
+  --line: #e9e0d3;
+  --gradient: linear-gradient(115deg, #ed5919 0%, #ffbf28 44%, #82934e 74%, #62452e 100%);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+
+.site-header {
+  background: var(--gradient);
+  color: #fff;
+  text-align: center;
+  padding: 2.2rem 1rem 1.8rem;
+}
+.site-header h1 { margin: 0; font-size: 2.4rem; letter-spacing: 0.02em; }
+.subtitle { margin: 0.4rem 0 0; opacity: 0.95; }
+
+main { flex: 1; width: min(980px, 94vw); margin: 1.5rem auto; }
+
+.tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.tab.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  font-weight: 600;
+}
+
+.panel.hidden { display: none; }
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.field { display: block; margin-bottom: 0.9rem; font-size: 0.95rem; }
+.field select,
+.formula-editor input,
+.formula-editor textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.field.checkbox { display: flex; align-items: center; gap: 0.5rem; }
+.field.checkbox input { width: auto; }
+
+input[type='range'] { width: 100%; accent-color: var(--brand); }
+input[type='checkbox'] { accent-color: var(--brand); }
+
+.formula-display {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+.description { color: var(--muted); font-size: 0.9rem; margin: 0.4rem 0 0; }
+.approx-error { color: var(--brown); font-size: 0.9rem; margin: 0.5rem 0 0; font-weight: 600; }
+.approx-error small { font-weight: 400; color: var(--muted); }
+
+.about h2 { color: var(--brown); margin-top: 0; }
+.about h3 { color: var(--brown); margin: 1.2rem 0 0.4rem; }
+.about code {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  font-size: 0.9em;
+}
+.about li { margin-bottom: 0.7rem; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; }
+.controls .field { flex: 1 1 260px; margin-bottom: 0; }
+
+.canvas-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.6rem;
+}
+.fourier-canvas { width: 100%; height: 440px; display: block; }
+
+.formula-editor h3 { margin-top: 0; color: var(--brown); }
+.formula-editor label { display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+.formula-editor fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+.formula-editor legend { font-size: 0.85rem; color: var(--muted); }
+.coef-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.7rem; }
+.latex-preview {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.8rem;
+  min-height: 2.4rem;
+  overflow-x: auto;
+}
+
+.formula-editor button[type='submit'] {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.formula-editor button[type='submit']:hover { background: var(--orange); }
+
+.form-error { color: #b7410e; font-size: 0.9rem; }
+.form-ok { color: var(--green); font-size: 0.9rem; }
+.hint { font-size: 0.85rem; color: var(--muted); margin-top: 0.8rem; }
+
+button.danger {
+  background: none;
+  border: 1px solid #b7410e;
+  color: #b7410e;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+a { color: var(--brand); }
+
+.site-footer { margin-top: auto; }
+.footer-gradient { height: 6px; background: var(--gradient); }
+.footer-content {
+  background: var(--brown);
+  color: #f7efdf;
+  text-align: center;
+  padding: 1.6rem 1rem 2rem;
+  font-size: 0.92rem;
+}
+.footer-brand { font-size: 1.15rem; font-weight: 700; color: var(--yellow); margin: 0 0 0.5rem; }
+.footer-content a { color: #ffcb60; }
+.footer-license { font-size: 0.8rem; opacity: 0.8; margin-top: 0.8rem; }
