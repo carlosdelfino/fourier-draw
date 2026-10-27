@@ -16,6 +16,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { FormulaFactory } from './formulas/FormulaFactory.js';
 import { compileCoefficient } from './formulas/compileCoefficient.js';
+import { epicyclesFromCoefficients } from './formulas/epicycles.js';
 import {
   loadStoredFormulas,
   removeStoredFormula,
@@ -48,10 +49,13 @@ export default function App() {
           latex: s.latex,
           description: s.description,
           defaultN: s.defaultN,
-          a: compileCoefficient(s.a),
-          b: compileCoefficient(s.b),
-          c: compileCoefficient(s.c),
-          d: compileCoefficient(s.d),
+          epicycles: epicyclesFromCoefficients(
+            compileCoefficient(s.a),
+            compileCoefficient(s.b),
+            compileCoefficient(s.c),
+            compileCoefficient(s.d),
+            2500,
+          ),
         });
       } catch (err) {
         console.warn('Fórmula salva inválida ignorada:', s.id, err.message);

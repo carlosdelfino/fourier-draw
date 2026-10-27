@@ -108,6 +108,43 @@ export function epicycleChain(terms, t01, N) {
 }
 
 /**
+ * Converte coeficientes do par paramétrico da imagem de referência
+ *
+ *   x_N(t) = Σ (a_k cos kt + b_k sin kt)
+ *   y_N(t) = Σ (c_k cos kt + d_k sin kt)
+ *
+ * em termos de epicycles. Decompondo z_k = x_k + i·y_k em exponenciais:
+ *
+ *   C_{+k} = ((a_k + d_k) + i(c_k − b_k)) / 2
+ *   C_{−k} = ((a_k − d_k) + i(c_k + b_k)) / 2
+ *
+ * @param {(k:number)=>number} a Coeficiente a_k de x(t).
+ * @param {(k:number)=>number} b Coeficiente b_k de x(t).
+ * @param {(k:number)=>number} c Coeficiente c_k de y(t).
+ * @param {(k:number)=>number} d Coeficiente d_k de y(t).
+ * @param {number} maxK          Maior harmônico k considerado.
+ * @returns {EpicycleTerm[]} 2·maxK termos ordenados por amplitude.
+ */
+export function epicyclesFromCoefficients(a, b, c, d, maxK = 2500) {
+  const terms = [];
+  for (let k = 1; k <= maxK; k++) {
+    const ak = a(k);
+    const bk = b(k);
+    const ck = c(k);
+    const dk = d(k);
+    const reP = (ak + dk) / 2;
+    const imP = (ck - bk) / 2;
+    const reM = (ak - dk) / 2;
+    const imM = (ck + bk) / 2;
+    terms.push(
+      { freq: k, amp: Math.hypot(reP, imP), phase: Math.atan2(imP, reP) },
+      { freq: -k, amp: Math.hypot(reM, imM), phase: Math.atan2(imM, reM) },
+    );
+  }
+  return terms.sort((u, v) => v.amp - u.amp);
+}
+
+/**
  * Sampler de um polígono regular com `sides` vértices (perímetro unitário).
  * @param {number} sides   Número de lados.
  * @param {number} rotation Rotação inicial em radianos.

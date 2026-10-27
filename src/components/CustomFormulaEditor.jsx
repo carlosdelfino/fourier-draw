@@ -12,6 +12,7 @@
 import { useMemo, useState } from 'react';
 import { MathJax } from 'better-react-mathjax';
 import { compileCoefficient } from '../formulas/compileCoefficient.js';
+import { epicyclesFromCoefficients } from '../formulas/epicycles.js';
 import { FormulaFactory } from '../formulas/FormulaFactory.js';
 import { upsertStoredFormula } from '../storage/formulaStorage.js';
 
@@ -53,7 +54,8 @@ export default function CustomFormulaEditor({ onSaved }) {
         latex: form.latex || previewLatex,
         description: form.description || 'Criada pelo usuário.',
         defaultN: Number(form.defaultN) || 20,
-        ...fns,
+        // converte o par paramétrico em epicycles (círculos ±k)
+        epicycles: epicyclesFromCoefficients(fns.a, fns.b, fns.c, fns.d, 2500),
       });
       upsertStoredFormula({
         id,
