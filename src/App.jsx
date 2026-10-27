@@ -155,9 +155,19 @@ export default function App() {
                   <input
                     type="range"
                     min="1"
-                    max="120"
+                    max="5000"
                     value={harmonics}
                     onChange={(e) => setHarmonics(Number(e.target.value))}
+                  />
+                  <input
+                    className="harmonics-number"
+                    type="number"
+                    min="1"
+                    max="5000"
+                    value={harmonics}
+                    onChange={(e) =>
+                      setHarmonics(Math.max(1, Math.min(5000, Number(e.target.value) || 1)))
+                    }
                   />
                 </label>
                 <label className="field checkbox">

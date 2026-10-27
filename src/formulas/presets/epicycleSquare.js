@@ -17,6 +17,6 @@ export default {
   description:
     'Perímetro de um quadrado reconstruído pela soma de círculos — ' +
     'equivalente à série de Fourier de um caminho poligonal.',
-  epicycles: epicyclesFromPath(polygonSampler(4), 32),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(polygonSampler(4), 2501)); },
   defaultN: 16,
 };

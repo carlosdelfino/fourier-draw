@@ -32,6 +32,6 @@ export default {
   description:
     'Coração paramétrico expandido em círculos de Fourier — réplica do ' +
     'pipeline SVG→DFT de tokyo-s/FourierDrawings.',
-  epicycles: epicyclesFromPath(heartSampler, 32),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(heartSampler, 2501)); },
   defaultN: 12,
 };

@@ -20,6 +20,6 @@ export default {
   description:
     'Estrela de 5 pontas reconstruída por círculos encadeados — mesmo método ' +
     'de tokyo-s/FourierDrawings (DFT do caminho SVG).',
-  epicycles: epicyclesFromPath(starSampler(5, 0.42), 32),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(starSampler(5, 0.42), 2501)); },
   defaultN: 24,
 };

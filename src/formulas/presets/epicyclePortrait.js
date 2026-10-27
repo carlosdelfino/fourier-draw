@@ -43,6 +43,6 @@ export default {
   description:
     'Silhueta de rosto por círculos encadeados, como nos vídeos de ' +
     '@fourier.tracks — teste N=4 e N=16 para comparar o erro de aproximação.',
-  epicycles: epicyclesFromPath(portraitSampler, 40),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(portraitSampler, 2501)); },
   defaultN: 16,
 };

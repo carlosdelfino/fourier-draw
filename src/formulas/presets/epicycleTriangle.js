@@ -16,6 +16,6 @@ export default {
     'C_n=\\int_0^1 z(t)\\,e^{-2\\pi i n t}\\,dt',
   description:
     'Perímetro de um triângulo equilátero reconstruído por círculos encadeados.',
-  epicycles: epicyclesFromPath(polygonSampler(3), 32),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(polygonSampler(3), 2501)); },
   defaultN: 16,
 };

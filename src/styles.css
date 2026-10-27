@@ -72,6 +72,7 @@ main { flex: 1; width: min(980px, 94vw); margin: 1.5rem auto; }
 
 .field { display: block; margin-bottom: 0.9rem; font-size: 0.95rem; }
 .field select,
+.field input[type='number'],
 .formula-editor input,
 .formula-editor textarea {
   display: block;
@@ -88,6 +89,7 @@ main { flex: 1; width: min(980px, 94vw); margin: 1.5rem auto; }
 .field.checkbox input { width: auto; }
 
 input[type='range'] { width: 100%; accent-color: var(--brand); }
+.harmonics-number { width: 6.5rem; margin-top: 0.4rem; }
 input[type='checkbox'] { accent-color: var(--brand); }
 
 .formula-display {

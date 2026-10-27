@@ -106,7 +106,7 @@ export default function CustomFormulaEditor({ onSaved }) {
         </div>
         <label>
           Harmônicos (N)
-          <input type="number" min="1" max="500" value={form.defaultN} onChange={set('defaultN')} />
+          <input type="number" min="1" max="5000" value={form.defaultN} onChange={set('defaultN')} />
         </label>
       </fieldset>
       <label>

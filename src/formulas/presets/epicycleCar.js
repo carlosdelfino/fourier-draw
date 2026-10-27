@@ -41,6 +41,6 @@ export default {
   description:
     'Silhueta de carro de corrida por círculos encadeados, como nos vídeos ' +
     'de @fourier.tracks — aumente N para reduzir o erro de aproximação.',
-  epicycles: epicyclesFromPath(carSampler, 40),
+  get epicycles() { return (this._epicycles ||= epicyclesFromPath(carSampler, 2501)); },
   defaultN: 20,
 };

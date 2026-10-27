@@ -98,7 +98,14 @@ export default function FourierCanvas({ formula, harmonics, animate }) {
       // cadeia de epicycles no instante atual (estilo @fourier.tracks)
       const t01 = stateRef.current.t / (2 * Math.PI);
       if (isEpicycleFormula(formula)) {
-        const chain = epicycleChain(formula.epicycles, t01, harmonics);
+        // Desenha no máximo MAX_DRAWN_CIRCLES círculos por frame — desenhar
+        // milhares de arcos a cada frame degradaria a animação.
+        const MAX_DRAWN_CIRCLES = 400;
+        const chain = epicycleChain(
+          formula.epicycles,
+          t01,
+          Math.min(harmonics, MAX_DRAWN_CIRCLES),
+        );
         ctx.strokeStyle = '#bcb09c';
         ctx.lineWidth = 1;
         for (const c of chain) {
